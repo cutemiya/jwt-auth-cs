@@ -58,9 +58,20 @@ public class AccountRepository : IAccountRepository
             $@"select id, email, username, role from accounts where refresh_token = '{token}'");
     }
 
-    public async Task UpdateRefresh(string token, DateTime tokenTime)
+    public async Task UpdateRefresh(string token, DateTime tokenTime, int id)
     {
         await _dapperContext.Connection.ExecuteAsync($@"update accounts set 
-                    refresh_token = '{token}', refresh_token_expired_time='{tokenTime}'");
+                    refresh_token = '{token}', refresh_token_expired_time='{tokenTime}' where id={id}");
+    }
+
+    public async Task UpdateAccount(DbAccount user)
+    {
+        await _dapperContext.Connection.ExecuteAsync(
+            $@"update accounts set email='{user.Email}', username='{user.Username}' where id={user.Id}");
+    }
+
+    public async Task DeleteAccount(int id)
+    {
+        await _dapperContext.Connection.ExecuteAsync($@"delete from accounts where id = {id}");
     }
 }

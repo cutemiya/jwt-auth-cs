@@ -9,5 +9,7 @@ public interface IAccountRepository
     Task<DbAccount?> GetAccountData(string email, string password);
     Task<bool> CheckRefreshToken(string token);
     Task<DbAccount?> GetAccountDataByToken(string token);
-    Task UpdateRefresh(string token, DateTime tokenTime);
+    Task UpdateRefresh(string token, DateTime tokenTime, int id);
+    Task UpdateAccount(DbAccount user);
+    Task DeleteAccount(int id);
 }

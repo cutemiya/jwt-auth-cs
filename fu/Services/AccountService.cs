@@ -23,4 +23,14 @@ public class AccountService: IAccountService
     {
         return await _accountRepository.GetAccountData(email, password);
     }
+
+    public async Task UpdateAccount(DbAccount user)
+    {
+        await _accountRepository.UpdateAccount(user);
+    }
+
+    public async Task DeleteAccount(int id)
+    {
+        await _accountRepository.DeleteAccount(id);
+    }
 }

@@ -7,4 +7,6 @@ public interface IAccountService
 {
     Task<int> CreateAccount(DbAccount account);
     Task<DbAccount?> GetAccountData(string email, string password);
+    Task UpdateAccount(DbAccount user);
+    Task DeleteAccount(int id);
 }

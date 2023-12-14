@@ -54,7 +54,7 @@ public class JwtService: IJwtService
         var refreshToken = CreateToken(new List<Claim>(), 72);
         var accessToken = CreateToken(claims, 72);
 
-        await _accountRepository.UpdateRefresh(token, DateTime.Now.AddHours(72));
+        await _accountRepository.UpdateRefresh(refreshToken, DateTime.Now.AddHours(72), account.Id);
 
         return new AuthDtoResponse()
         {
